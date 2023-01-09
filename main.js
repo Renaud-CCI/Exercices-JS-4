@@ -121,24 +121,44 @@ for (let combiButton of combiButtons) {
 
   let photo = document.querySelector('#carrouselImg');
   let carrouselBtn = document.querySelector('#carrouselBtn')
-  let leftCar = document.querySelector('#leftCarrousel');
-  let rightCar = document.querySelector('#rightCarrousel');
+  // let leftCar = document.querySelector('#leftCarrousel');
+  // let rightCar = document.querySelector('#rightCarrousel');
 
   carrouselBtn.addEventListener('click', function(){
     photo.style.visibility='visible';
   })
 
-  leftCar.addEventListener('click', function(){
-    if (photo.src.substring(33,34) > 1){
-        i = parseInt(photo.src.substring(33,34))-1;
-        photo.src = `.${photo.src.substring(21,33)}${i}.jpg`
-    }
-  })
+  // leftCar.addEventListener('click', function(){
+  //   if (photo.src.substring(33,34) > 1){
+  //       i = parseInt(photo.src.substring(33,34))-1;
+  //       photo.src = `.${photo.src.substring(21,33)}${i}.jpg`
+  //   }
+  // })
 
-  rightCar.addEventListener('click', function(){
-    if (photo.src.substring(33,34) < 5){
+  // rightCar.addEventListener('click', function(){
+  //   if (photo.src.substring(33,34) < 5){
+  //       i = parseInt(photo.src.substring(33,34))+1;
+  //       photo.src = `.${photo.src.substring(21,33)}${i}.jpg`
+  //   }
+  // })
+
+  photo.addEventListener('click', function(event) {
+    if (event.offsetX > photo.offsetWidth / 2) {
+      console.log('clicked on the right side of the image');
+      if (photo.src.substring(33,34) < 5){
         i = parseInt(photo.src.substring(33,34))+1;
         photo.src = `.${photo.src.substring(21,33)}${i}.jpg`
+      } else {
+        photo.src = `.${photo.src.substring(21,33)}1.jpg`
+      }
+    } else {
+      console.log('clicked on the left side of the image');
+      if (photo.src.substring(33,34) > 1){
+        i = parseInt(photo.src.substring(33,34))-1;
+        photo.src = `.${photo.src.substring(21,33)}${i}.jpg`;
+      } else {
+        photo.src = `.${photo.src.substring(21,33)}5.jpg`
+      }
     }
-  })
+  });
 
